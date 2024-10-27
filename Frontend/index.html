@@ -104,9 +104,9 @@
       window.addEventListener("DOMContentLoaded", () => {
         const widget = nlxai.chatWidget.create({
           config: {
-            botUrl: "https://bots.dev.studio.nlx.ai/c/3m7NOTHTxFGIDb9VxRZnB/4GtKrqjsHE4n-XZhekVi9",
+            botUrl: "https://bots.dev.studio.nlx.ai/c/4EBLfwwF9kr8cjc5vFiFF/2gbEyOjpbZRpv3rrZt37l",
             headers: {
-              "nlx-api-key": "e4UIBTStVO6046FHiD8arEJrcpv2QU=u"
+              "nlx-api-key": "ImlWo5iKZ2jeDu3wgw"
             },
             languageCode: "en-US"
           },
@@ -114,6 +114,15 @@
             "title": "Support",
             "withCollapseButton": false,
             "withCloseButton": true
+          },
+          onExpand: (conversationHandler) => {
+            const checkMessages = (messages) => {
+              if (messages.length === 0) {
+                conversationHandler.sendWelcomeIntent();
+              }
+              conversationHandler.unsubscribe(checkMessages);
+            };
+            conversationHandler.subscribe(checkMessages);
           },
           theme: {
             "primaryColor": "#fecd4d",
